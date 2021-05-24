@@ -1,9 +1,10 @@
-public int LastStoneWeight(int[] stones) {
-         List<int> input = new List<int>(stones);
+public static int LastStoneWeight(int[] stones)
+        {
+            List<int> input = new List<int>(stones);
             input.Sort();
             return LastStoneWeight_sorted(input);
-    }
-    public static int LastStoneWeight_sorted(List<int> input)
+        }
+        public static int LastStoneWeight_sorted(List<int> input)
         {
             if (input.Count == 2)
             {
@@ -22,7 +23,12 @@ public int LastStoneWeight(int[] stones) {
                     Boolean falg = false;
                     for (int i = 0; i < input.Count - 2; i++)
                     {
-                        if (result <= input[i])
+                        if (i == input.Count - 3 && falg == false)
+                        {
+                            temp.Add(input[i]);
+                            temp.Add(result);
+                        }
+                        else if (result <= input[i])
                         {
                             if (falg == false)
                             {
