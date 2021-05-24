@@ -1,0 +1,50 @@
+public int LastStoneWeight(int[] stones) {
+         List<int> input = new List<int>(stones);
+            input.Sort();
+            return LastStoneWeight_sorted(input);
+    }
+    public static int LastStoneWeight_sorted(List<int> input)
+        {
+            if (input.Count == 2)
+            {
+                return input[1] - input[0];
+            }
+            else if (input.Count == 1)
+                return input[0];
+            else if (input.Count == 0)
+                return 0;
+            else
+            {
+                List<int> temp = new List<int>();
+                int result = input[input.Count - 1] - input[input.Count - 2];
+                if (result != 0)
+                {
+                    Boolean falg = false;
+                    for (int i = 0; i < input.Count - 2; i++)
+                    {
+                        if (result <= input[i])
+                        {
+                            if (falg == false)
+                            {
+                                falg = true;
+                                temp.Add(result);
+                                temp.Add(input[i]);
+                            }
+                            else
+                                temp.Add(input[i]);
+                        }
+                        else
+                            temp.Add(input[i]);
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < input.Count - 2; i++)
+                    {
+                        temp.Add(input[i]);
+                    }
+                }
+                return LastStoneWeight_sorted(temp);
+            }
+
+        }
