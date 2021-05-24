@@ -1,0 +1,17 @@
+List<int> list = new List<int>(stones);
+        while (list.Count > 1)
+            {
+                int size = list.Count;
+                list.Sort();
+                if (list[size - 1] > list[size - 2])
+                {
+                    list[size - 1] = list[size - 1] - (list[size - 2]);                    
+                    list.RemoveAt(size - 2);
+                }
+                else if(list[size - 1] == list[size - 2])
+                {
+                    list.RemoveAt(size - 1);
+                    list.RemoveAt(size - 2);
+                }
+            }
+        return list[0];
