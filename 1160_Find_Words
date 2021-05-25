@@ -1,0 +1,45 @@
+char[] char_array = chars.ToCharArray();
+            int output = 0;
+            Dictionary<char, int> char_dic_init = new Dictionary<char, int>();
+            for (int i = 0; i < char_array.Length; i++)
+            {
+                if (!char_dic_init.ContainsKey(char_array[i]))
+                {
+                    char_dic_init.Add(char_array[i], 1);
+                }
+                else
+                {
+                    int temp = char_dic_init[char_array[i]];
+                    temp++;
+                    char_dic_init[char_array[i]] = temp;
+                }
+            }
+
+            for (int i = 0; i < words.Length; i++)
+            {
+                Dictionary<char, int> char_dic = new Dictionary<char, int>(char_dic_init);
+                char[] word = words[i].ToCharArray();
+                Boolean flag = true;
+                for (int j = 0; j < word.Length; j++)
+                {
+                    if (!char_dic.ContainsKey(word[j]))
+                    {
+                        flag = false;
+                        break;
+                    }
+                    else
+                    {
+                        int temp = char_dic[word[j]];
+                        temp--;
+                        if (temp < 0)
+                        {
+                            flag = false;
+                            break;
+                        }
+                        char_dic[word[j]] = temp;
+                    }
+                }
+                if (flag == true)
+                    output += words[i].Length;
+            }
+            return output;
