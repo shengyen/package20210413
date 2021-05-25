@@ -1,4 +1,6 @@
-char[] char_array = chars.ToCharArray();
+        public static int CountCharacters(string[] words, string chars)
+        {
+            char[] char_array = chars.ToCharArray();
             int output = 0;
             Dictionary<char, int> char_dic_init = new Dictionary<char, int>();
             for (int i = 0; i < char_array.Length; i++)
@@ -43,3 +45,4 @@ char[] char_array = chars.ToCharArray();
                     output += words[i].Length;
             }
             return output;
+        }
